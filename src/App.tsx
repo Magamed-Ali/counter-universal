@@ -1,12 +1,12 @@
 import React from 'react';
-import CounterHouse from "./components/House/CounterHouse";
+import CounterOne from "./CounterOne";
+
 
 
 function App() {
   return (
       <div className="App">
-        <CounterHouse/>
-        <CounterHouse/>
+          <CounterOne/>
       </div>
   );
 }

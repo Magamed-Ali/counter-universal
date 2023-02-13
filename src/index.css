@@ -1,8 +1,8 @@
-body{
+body {
     background: #2f323b;
 }
 
-.App{
+.App {
     width: 900px;
     height: 100vh;
     display: flex;
@@ -12,7 +12,7 @@ body{
     margin: auto;
 }
 
-.counter-house{
+.counter-house {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,7 +23,7 @@ body{
     padding: 10px;
 }
 
-.counter-top{
+.counter-top {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,7 +34,7 @@ body{
     box-sizing: border-box;
 }
 
-.button-bottom{
+.button-bottom {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,19 +45,75 @@ body{
     box-sizing: border-box;
 }
 
-.counter-value{
+.counter-value {
     color: #72bcd6;
     font-size: 80px;
     font-weight: 600;
 }
 
-.button-counter{
+.counter-input {
+    color: #72bcd6;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.counter-input div {
+    width: 350px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.counter-input div input {
+    width: 110px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 18px;
+    color: #000000;
+    font-weight: 600;
+}
+.counter-input div input:focus{
+    outline: none;
+    border: 2px solid #72bcd6;
+}
+
+.button-counter {
     padding: 5px 15px;
     margin: 0 10px;
     background: #72bcd6;
+    transition: .3s;
     color: #2f323b;
     font-size: 30px;
     font-weight: 600;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.button-counter:hover {
+    background: #497d8f;
+    color: #000;
+}
+
+.button-counter:active {
+    background: #89d3ec;
+}
+
+.button-counter:default {
+    background: #2e4b56;
+}
+.button-counter:disabled {
+    background: #2e4b56;
+}
+
+.value-red{
+    color: #b61414;
+}
+.disabledInput {
+    border: 2px solid #fd0000 !important;
+    background: rgb(253, 129, 157);
 }
