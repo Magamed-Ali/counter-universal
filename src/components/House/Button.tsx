@@ -13,8 +13,6 @@ export  type ButtonType = {
 }
 function Button(props: ButtonType) {
 
-    console.log("34444", props.value, props.disabled)
-
     return (
         <>
             {props.set && <button disabled={!props.disabledInput}  className="button-counter" onClick={props.changeMaxStart}> {props.set}</button>}

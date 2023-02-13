@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CounterHouse from "./components/House/CounterHouse";
 
 type DataType = {
@@ -25,11 +25,26 @@ export type ValueType = {
 const one = 1
 const two = 2
 function CounterOne() {
+
+    useEffect(() => {
+        getFromLocalMax()
+    }, [])
+    const getFromLocalMax = () => {
+        let counterMax = localStorage.getItem("counterMax")
+        let counterStart = localStorage.getItem("counterStart")
+        if(counterMax && counterStart){
+            let newMax = JSON.parse(counterMax)
+            let newStart = JSON.parse(counterStart)
+            setDisabled(newMax)
+            setValue(newStart)
+            setDataInput({ start: newStart, max: newMax})
+        }
+    }
+
     const [dataInput, setDataInput] = useState<DataType>({
         max: 1,
         start: 0
     })
-
     const [value, setValue] = useState(dataInput.start)
     const [disabled, setDisabled] = useState(dataInput.max)
     const[disableInput, setdisableInput] = useState<boolean>(true)
@@ -52,11 +67,10 @@ function CounterOne() {
     }
 
     const changeMaxStart = () => {
-
             setDisabled(dataInput.max)
             setValue(dataInput.start)
-
-
+        setToLocalStorageHandlerStart()
+        setToLocalStorageHandlerMax()
     }
 
     const addValue = () => {
@@ -65,6 +79,17 @@ function CounterOne() {
     const resetValue = () => {
         setValue(dataInput.start)
     }
+
+    const setToLocalStorageHandlerStart = () => {
+        localStorage.setItem("counterStart", JSON.stringify(dataInput.start))
+    }
+    const setToLocalStorageHandlerMax = () => {
+        localStorage.setItem("counterMax", JSON.stringify(dataInput.max))
+    }
+
+
+
+
 
     return (
         <>
