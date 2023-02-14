@@ -46,6 +46,7 @@ body {
 }
 
 .counter-value {
+    display: contents;
     color: #72bcd6;
     font-size: 80px;
     font-weight: 600;
@@ -116,4 +117,10 @@ body {
 .disabledInput {
     border: 2px solid #fd0000 !important;
     background: rgb(253, 129, 157);
+}
+
+.incorrect-value{
+    font-size: 28px;
+    color: #b61414;
+    line-height: 28px;
 }

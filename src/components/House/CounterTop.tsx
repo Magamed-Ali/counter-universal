@@ -15,7 +15,7 @@ function CounterTop(props: ValueType) {
     return (
         <div className="counter-top">
             <div className={`counter-value ${props.value === props.disabled && "value-red"}`}>
-                {props.one && props.value}
+                {props.one ? props.disableInput ? props.value : <span className="incorrect-value">Incorrect value!</span> : props.value}
             </div>
             <div >
                 {props.two &&
