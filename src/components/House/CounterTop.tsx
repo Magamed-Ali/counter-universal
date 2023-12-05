@@ -11,6 +11,9 @@ function CounterTop(props: ValueType) {
         props.setStartValue(e)
 
     }
+    console.log('value', props.value)
+    console.log('disableInput', props.disableInput)
+    console.log('disabled', props.disabled)
 
     return (
         <div className="counter-top">

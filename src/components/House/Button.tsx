@@ -1,4 +1,6 @@
 import React from 'react';
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../state/store";
 
 export  type ButtonType = {
     set?: string
@@ -12,6 +14,7 @@ export  type ButtonType = {
     disabledInput: boolean
 }
 function Button(props: ButtonType) {
+
 
     return (
         <>

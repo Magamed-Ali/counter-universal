@@ -1,5 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import CounterHouse from "./components/House/CounterHouse";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
+import {
+    addVal,
+    changeDataInput,
+    changeDisabled,
+    changeDisabledInput,
+    changeValue
+} from "./state/counter-reducer";
 
 type DataType = {
     max: number
@@ -26,6 +35,12 @@ const one = 1
 const two = 2
 function CounterOne() {
 
+    const value = useSelector<AppRootStateType, number>(state => state.counter.value)
+    const disabled = useSelector<AppRootStateType, number>(state => state.counter.disabled)
+    const disableInput = useSelector<AppRootStateType, boolean>(state => state.counter.disableInput)
+    const dataInput = useSelector<AppRootStateType, {max: number, start: number}>(state => state.counter.dataInput)
+
+    const dispatch = useDispatch()
     useEffect(() => {
         getFromLocalMax()
     }, [])
@@ -35,49 +50,62 @@ function CounterOne() {
         if(counterMax && counterStart){
             let newMax = JSON.parse(counterMax)
             let newStart = JSON.parse(counterStart)
-            setDisabled(newMax)
-            setValue(newStart)
-            setDataInput({ start: newStart, max: newMax})
+            dispatch(changeDisabled(newMax))
+            dispatch(changeValue(newStart))
+            dispatch(changeDataInput(newStart, newMax))
+            /*setDisabled(newMax)*/
+            /*setValue(newStart)*/
+            /*setDataInput({ start: newStart, max: newMax})*/
         }
     }
 
-    const [dataInput, setDataInput] = useState<DataType>({
+    /*const [dataInput, setDataInput] = useState<DataType>({
         max: 1,
         start: 0
-    })
-    const [value, setValue] = useState(dataInput.start)
-    const [disabled, setDisabled] = useState(dataInput.max)
-    const[disableInput, setdisableInput] = useState<boolean>(true)
+    })*/
+    /*const [value, setValue] = useState(dataInput.start)*/
+    /*const [disabled, setDisabled] = useState(dataInput.max)*/
+    /*const[disableInput, setdisableInput] = useState<boolean>(true)*/
 
     const setMaxValue = (maxV: string) => {
         if(Number(maxV) > dataInput.start){
-            setdisableInput(true)
-            setDataInput({...dataInput, max: Number(maxV)})
+            /*setdisableInput(true)*/
+            dispatch(changeDisabledInput(true))
+            dispatch(changeDataInput(dataInput.start, Number(maxV)))
+            /*setDataInput({...dataInput, max: Number(maxV)})*/
         }else {
-            setdisableInput(false)
+            /*setdisableInput(false)*/
+            dispatch(changeDisabledInput(false))
         }
     }
     const setStartValue = (startV: string) => {
         if (Number(startV) < dataInput.max && Number(startV) >= 0) {
-            setdisableInput(true)
-            setDataInput({...dataInput, start: Number(startV)})
+            /*setdisableInput(true)*/
+            dispatch(changeDisabledInput(true))
+            dispatch(changeDataInput(Number(startV), dataInput.max))
+            /*setDataInput({...dataInput, start: Number(startV)})*/
         }else {
-            setdisableInput(false)
+            dispatch(changeDisabledInput(false))
+            /*setdisableInput(false)*/
         }
     }
 
     const changeMaxStart = () => {
-            setDisabled(dataInput.max)
-            setValue(dataInput.start)
+        dispatch(changeDisabled(dataInput.max))
+        dispatch(changeValue(dataInput.start))
+            /*setDisabled(dataInput.max)*/
+           /* setValue(dataInput.start)*/
         setToLocalStorageHandlerStart()
         setToLocalStorageHandlerMax()
     }
 
     const addValue = () => {
-        setValue(value + 1)
+        dispatch(addVal())
+        /*setValue(value + 1)*/
     }
     const resetValue = () => {
-        setValue(dataInput.start)
+        dispatch(changeValue(dataInput.start))
+        /*setValue(dataInput.start)*/
     }
 
     const setToLocalStorageHandlerStart = () => {
@@ -86,10 +114,6 @@ function CounterOne() {
     const setToLocalStorageHandlerMax = () => {
         localStorage.setItem("counterMax", JSON.stringify(dataInput.max))
     }
-
-
-
-
 
     return (
         <>
