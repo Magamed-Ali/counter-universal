@@ -53,59 +53,38 @@ function CounterOne() {
             dispatch(changeDisabled(newMax))
             dispatch(changeValue(newStart))
             dispatch(changeDataInput(newStart, newMax))
-            /*setDisabled(newMax)*/
-            /*setValue(newStart)*/
-            /*setDataInput({ start: newStart, max: newMax})*/
         }
     }
 
-    /*const [dataInput, setDataInput] = useState<DataType>({
-        max: 1,
-        start: 0
-    })*/
-    /*const [value, setValue] = useState(dataInput.start)*/
-    /*const [disabled, setDisabled] = useState(dataInput.max)*/
-    /*const[disableInput, setdisableInput] = useState<boolean>(true)*/
-
     const setMaxValue = (maxV: string) => {
         if(Number(maxV) > dataInput.start){
-            /*setdisableInput(true)*/
             dispatch(changeDisabledInput(true))
             dispatch(changeDataInput(dataInput.start, Number(maxV)))
-            /*setDataInput({...dataInput, max: Number(maxV)})*/
         }else {
-            /*setdisableInput(false)*/
             dispatch(changeDisabledInput(false))
         }
     }
     const setStartValue = (startV: string) => {
         if (Number(startV) < dataInput.max && Number(startV) >= 0) {
-            /*setdisableInput(true)*/
             dispatch(changeDisabledInput(true))
             dispatch(changeDataInput(Number(startV), dataInput.max))
-            /*setDataInput({...dataInput, start: Number(startV)})*/
         }else {
             dispatch(changeDisabledInput(false))
-            /*setdisableInput(false)*/
         }
     }
 
     const changeMaxStart = () => {
         dispatch(changeDisabled(dataInput.max))
         dispatch(changeValue(dataInput.start))
-            /*setDisabled(dataInput.max)*/
-           /* setValue(dataInput.start)*/
         setToLocalStorageHandlerStart()
         setToLocalStorageHandlerMax()
     }
 
     const addValue = () => {
         dispatch(addVal())
-        /*setValue(value + 1)*/
     }
     const resetValue = () => {
         dispatch(changeValue(dataInput.start))
-        /*setValue(dataInput.start)*/
     }
 
     const setToLocalStorageHandlerStart = () => {
